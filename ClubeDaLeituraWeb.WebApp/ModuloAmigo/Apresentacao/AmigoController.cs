@@ -44,6 +44,9 @@ namespace ClubeDaLeituraWeb.WebApp.ModuloAmigos.Apresentacao.Views
         [HttpPost]
         public ActionResult Cadastrar(CadastrarAmigoViewModel amigoVm)
         {
+            if (!ModelState.IsValid)
+                return View(nameof(Cadastrar));
+
             Amigo amigo = new Amigo(amigoVm.Nome, amigoVm.NomeResponsavel, amigoVm.Telefone);
 
             repositorioAmigo.Cadastrar(amigo);
@@ -98,6 +101,9 @@ namespace ClubeDaLeituraWeb.WebApp.ModuloAmigos.Apresentacao.Views
         [HttpPost]
         public ActionResult Editar(EditarAmigoViewModel editarVm)
         {
+            if (!ModelState.IsValid)
+                return View(nameof(Editar));
+
             Amigo amigoAtualizado = new(
                 editarVm.Nome,
                 editarVm.NomeResponsavel,
