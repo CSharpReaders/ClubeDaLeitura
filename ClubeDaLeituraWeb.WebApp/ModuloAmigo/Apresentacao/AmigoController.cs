@@ -33,8 +33,50 @@ namespace ClubeDaLeituraWeb.WebApp.ModuloAmigos.Apresentacao.Views
                 );
                 listarVmS.Add(vm);
             }
-
             return View(listarVmS);
+        }
+
+        [HttpGet]
+        public ActionResult Cadastrar()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Cadastrar(CadastrarAmigoViewModel amigoVm)
+        {
+            Amigo amigo = new Amigo(amigoVm.Nome, amigoVm.NomeResponsavel, amigoVm.Telefone);
+
+            repositorioAmigo.Cadastrar(amigo);
+
+            return RedirectToAction(nameof(Listar));
+        }
+
+        [HttpGet]
+        public ActionResult Excluir(string id)
+        {
+            Amigo? amigo = repositorioAmigo.SelecionarPorId(id);
+
+            if (amigo == null)
+                return RedirectToAction(nameof(Listar));
+
+            ExcluirAmigoViewModel amigoVm = new(
+                id,
+                amigo.Nome,
+                amigo.NomeResponsavel,
+                amigo.Telefone
+            );
+            return View(amigoVm);
+        }
+        [HttpPost]
+        public ActionResult Excluir(ExcluirAmigoViewModel excluirVm)
+        {
+            Amigo? amigoExcluir = repositorioAmigo.SelecionarPorId(excluirVm.Id);
+
+            if (amigoExcluir != null)
+                repositorioAmigo.Excluir(amigoExcluir);
+
+
+            return RedirectToAction(nameof(Listar));
         }
     }
 }
