@@ -18,4 +18,10 @@ namespace ClubeDaLeituraWeb.WebApp.ModuloAmigos.Apresentacao
         string NomeResponsavel,
         string Telefone
     );
+    public record EditarAmigoViewModel(
+        string Id,
+        string Nome,
+        string NomeResponsavel,
+        string Telefone
+    );
 }
