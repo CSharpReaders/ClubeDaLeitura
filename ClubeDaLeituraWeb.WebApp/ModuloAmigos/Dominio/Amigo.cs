@@ -9,13 +9,15 @@ public class Amigo : EntidadeBase<Amigo>
     public string Telefone { get; set; } = string.Empty;
 
     // public Emprestimo[] Emprestimos { get; set; } = new Emprestimo[100];
+
+    public Amigo() { }
     public Amigo(string nome, string nomeResponsavel, string telefone)
     {
         Nome = nome;
         NomeResponsavel = nomeResponsavel;
         Telefone = telefone;
     }
-    public override List<String> Validar()
+    public override List<string> Validar()
     {
         List<string> erros = new();
 
