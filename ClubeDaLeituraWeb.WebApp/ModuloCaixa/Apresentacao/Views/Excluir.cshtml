@@ -1,6 +1,6 @@
 @{
     Layout = "_Layout";
-    ViewBag.Titulo = "Edição de Caixa";
+    ViewBag.Titulo = "Exclusão de Caixa";
 }
 
 @model ExcluirCaixaViewModel;
@@ -24,6 +24,10 @@
         <input asp-for="DiasDeEmprestimo" type="number" min="1" class="form-control" disabled>
         <span asp-validation-for="DiasDeEmprestimo" class="text-danger small fw-semibold"></span>
     </div>
+
+    <div class="alert alert-danger fw-bold" role="alert">
+            Deseja Excluir o Registro: @Model.Etiqueta?
+        </div>
 
     <div class="d-flex justify-content-end gap-2 mt-4">
         <a class="btn btn-outline-primary rounded-pill px-4" asp-action="Listar">Voltar</a>
