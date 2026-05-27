@@ -15,6 +15,7 @@ public record CadastrarRevistaViewModel(
     string IdCaixa
 );
 public record EditarRevistaViewModel(
+    string Id,
     string Titulo,
     int NumeroEdicao,
     int AnoPublicacao,

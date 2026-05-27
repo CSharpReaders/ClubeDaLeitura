@@ -39,10 +39,9 @@
                     @foreach (ListarCaixasViewModel caixa in caixas)
                     {
                         if (caixa.Id == Model.IdCaixa)
-                    {
-                    <option value="@caixa.Id" selected>@caixa.Etiqueta</option>
-
-                    }
+                        {
+                            <option value="@caixa.Id" selected>@caixa.Etiqueta</option>
+                        }
                         <option value="@caixa.Id">@caixa.Etiqueta</option>
                     }
                 </select>

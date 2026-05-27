@@ -64,6 +64,26 @@ public class RevistaController : Controller
         }
         return RedirectToAction(nameof(Listar));
     }
+    [HttpGet]
+    public ActionResult Editar(string id)
+    {
+        ViewBag.Caixas = CarregarCaixas();
+
+        Revista? revista = repositorioRevista.SelecionarPorId(id);
+
+        if (revista == null)
+            return RedirectToAction(nameof(Listar));
+
+        EditarRevistaViewModel vmEdidar = new(
+            revista.Id,
+            revista.Titulo,
+            revista.NumeroEdicao,
+            revista.NumeroEdicao,
+            revista.Caixa.Id
+        );
+
+        return View(vmEdidar);
+    }
     private List<ListarCaixasViewModel> CarregarCaixas()
     {
         List<Caixa> caixas = repostiorioCaixa.SelecionarTodos();
