@@ -3,6 +3,7 @@ using ClubeDaLeituraWeb.WebApp.ModuloAmigos.Dominio;
 using ClubeDaLeituraWeb.WebApp.ModuloAmigos.Infra;
 using ClubeDaLeituraWeb.WebApp.ModuloCaixa.Dominio;
 using ClubeDaLeituraWeb.WebApp.ModuloCaixa.Infra;
+using ClubeDaLeituraWeb.WebApp.ModuloEmprestimo.Infra;
 using ClubeDaLeituraWeb.WebApp.ModuloRevista.Dominio;
 using ClubeDaLeituraWeb.WebApp.ModuloRevista.Infra;
 
@@ -21,6 +22,7 @@ builder.Services.AddScoped(provider =>
 builder.Services.AddScoped<IRepositorioCaixa, RepositorioCaixaEmArquivo>();
 builder.Services.AddScoped<IRepositorioAmigo, ReposiotiroAmigoEmArquivo>();
 builder.Services.AddScoped<IRepositorioRevista, RepositorioRevistaEmArquivo>();
+builder.Services.AddScoped<IRepositorioEmprestimo, RepositorioEmprestimoEmArquivo>();
 
 builder.Services.AddControllersWithViews().AddRazorOptions(options =>
 {
