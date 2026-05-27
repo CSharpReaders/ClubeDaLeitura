@@ -8,6 +8,10 @@ public record ListarRevistaViewModels(
     int AnoPublicacao,
     string NomeCaixa
 );
+public record ListarRevistaNomeViewModels(
+    string Id,
+    string Titulo
+);
 public record CadastrarRevistaViewModel(
     string Titulo,
     int NumeroEdicao,
@@ -27,4 +31,4 @@ public record ExcluirRevistaViewModel(
     int NumeroEdicao,
     int AnoPublicacao,
     string IdCaixa
-);   
+);

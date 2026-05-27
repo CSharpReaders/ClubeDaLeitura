@@ -8,7 +8,7 @@ public class Amigo : EntidadeBase<Amigo>
     public string Nome { get; set; } = string.Empty;
     public string NomeResponsavel { get; set; } = string.Empty;
     public string Telefone { get; set; } = string.Empty;
-    public List<Emprestimo> Emprestimos { get; set; } = new List<Emprestimo>();
+    public Emprestimo Emprestimo { get; set; }
 
     public Amigo() { }
     public Amigo(string nome, string nomeResponsavel, string telefone)
@@ -16,6 +16,10 @@ public class Amigo : EntidadeBase<Amigo>
         Nome = nome;
         NomeResponsavel = nomeResponsavel;
         Telefone = telefone;
+    }
+    public void AddEmprestimo(Emprestimo e)
+    {
+        Emprestimo = e;
     }
     public override List<string> Validar()
     {

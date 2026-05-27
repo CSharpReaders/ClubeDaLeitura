@@ -15,7 +15,10 @@ public class Emprestimo : EntidadeBase<Emprestimo>
     {
         get => DataEmprestimo.AddDays(Revista.Caixa.DiasDeEmprestimo);
     }
+    public Emprestimo()
+    {
 
+    }
     public Emprestimo(Amigo amigo, Revista revista)
     {
         Amigo = amigo;

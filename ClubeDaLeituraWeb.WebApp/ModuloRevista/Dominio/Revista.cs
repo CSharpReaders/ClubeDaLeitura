@@ -11,6 +11,10 @@ public class Revista : EntidadeBase<Revista>
     public Caixa Caixa { get; set; }
     public Status Status { get; set; } = Status.Disponivel;
 
+    public void Emprestar()
+    {
+        Status = Status.Emprestada;
+    }
     public Revista()
     {
 

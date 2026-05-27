@@ -9,6 +9,10 @@ namespace ClubeDaLeituraWeb.WebApp.ModuloAmigos.Apresentacao
         string NomeResponsavel,
         string Telefone
     );
+    public record ListarAmigoNomeViewModel(
+        string Id,
+        string Nome
+    );
     public record CadastrarAmigoViewModel(
         [Required(ErrorMessage = "O campo \"Nome\" deve ser preenchido.")]
          [StringLength(30, MinimumLength = 3, ErrorMessage = "O campo \"Nome\" deve 3 à 30 caracteres!")]

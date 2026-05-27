@@ -1,0 +1,41 @@
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Cadastro de Emprestimo";
+
+    List<ListarAmigoNomeViewModel> amigos = ViewBag.Amigos;
+    List<ListarRevistaNomeViewModels> revistas = ViewBag.Revistas;
+}
+
+@model CadastrarEmprestimoViewModel;
+
+<form class="card border-primary-subtle shadow-sm mx-auto p-4" style="max-width: 620px;" asp-action="Cadastrar"
+      method="post">
+
+    <div class="mb-3">
+        <label asp-for="IdAmigo" class="form-label fw-semibold text-primary text-uppercase small">Amigo</label>
+        <select asp-for="IdAmigo" class="form-control">
+            <option value="" selected>Selecione Um Amigo</option>
+            @foreach (ListarAmigoNomeViewModel amigo in amigos)
+            {
+                <option value="@amigo.Id">@amigo.Nome</option>
+            }
+        </select>
+        <span asp-validation-for="IdAmigo" class="text-danger small fw-semibold"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="IdRevista" class="form-label fw-semibold text-primary text-uppercase small">Revista</label>
+        <select asp-for="IdRevista" class="form-control">
+            <option value="" selected>Selecione Uma Revista</option>
+            @foreach (ListarRevistaNomeViewModels revista in revistas)
+            {
+                <option value="@revista.Id">@revista.Titulo</option>
+            }
+        </select>
+        <span asp-validation-for="IdRevista" class="text-danger small fw-semibold"></span>
+    </div>
+
+    <div class="d-flex justify-content-end gap-2 mt-4">
+        <a class="btn btn-outline-primary rounded-pill px-4" asp-action="Listar">Voltar</a>
+        <button class="btn btn-primary rounded-pill px-4" type="submit">Confirmar</button>
+    </div>
+</form>

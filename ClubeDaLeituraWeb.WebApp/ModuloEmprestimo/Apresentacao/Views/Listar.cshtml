@@ -1,0 +1,56 @@
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Listagem de Emprestimos";
+}
+
+@model List<ListarEmprestimoViewModel>;
+
+
+<a class="btn btn-outline-primary rounded-pill px-4 mb-3" asp-action="Cadastrar">Abrir Emprestimo</a>
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-primary border-start border-primary border-2 rounded-3" role="alert">
+        Nenhum Emprestimo Cadastrado.
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered align-middle bg-white">
+            <thead class="table-primary">
+                <tr>
+                    <th>ID</th>
+                    <th>Amigo</th>
+                    <th>Revista</th>
+                    <th>Data Inicial</th>
+                    <th>Data Final</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (ListarEmprestimoViewModel c in Model)
+                {
+                    <tr>
+                        <td>@c.Id</td>
+                        <td>@c.NomeAmigo</td>
+                        <td>@c.NomeRevista</td>
+                        <td>@c.DataInicial</td>
+                        <td>@c.DataFinal</td>
+                        <td>@c.Status</td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <a class="btn btn-outline-primary btn-sm rounded-pill px-3" asp-action="Editar"
+                                   asp-route-id="@c.Id">Editar</a>
+                                <a class="btn btn-outline-primary btn-sm rounded-pill px-3" asp-action="Excluir"
+                                   asp-route-id="@c.Id">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
