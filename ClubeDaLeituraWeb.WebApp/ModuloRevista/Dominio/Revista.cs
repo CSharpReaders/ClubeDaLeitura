@@ -9,6 +9,7 @@ public class Revista : EntidadeBase<Revista>
     public int NumeroEdicao { get; set; }
     public int AnoPublicacao { get; set; }
     public Caixa Caixa { get; set; }
+    public Status Status { get; set; } = Status.Disponivel;
 
     public Revista()
     {
