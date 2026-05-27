@@ -102,6 +102,37 @@ public class RevistaController : Controller
 
         return RedirectToAction(nameof(Listar));
     }
+    [HttpGet]
+    public ActionResult Excluir(string id)
+    {
+
+        ViewBag.Caixas = CarregarCaixas();
+
+        Revista? revista = repositorioRevista.SelecionarPorId(id);
+
+        if (revista == null)
+            return RedirectToAction(nameof(Listar));
+
+        ExcluirRevistaViewModel excluirVm = new(
+            revista.Id,
+            revista.Titulo,
+            revista.NumeroEdicao,
+            revista.AnoPublicacao,
+            revista.Caixa.Id
+        );
+
+        return View(excluirVm);
+    }
+    [HttpPost]
+    public ActionResult Excluir(ExcluirRevistaViewModel vmExlcuir)
+    {
+        Revista? revista = repositorioRevista.SelecionarPorId(vmExlcuir.Id);
+
+        if (revista != null)
+            repositorioRevista.Excluir(revista);
+
+        return RedirectToAction(nameof(Listar));
+    }
     private List<ListarCaixasViewModel> CarregarCaixas()
     {
         List<Caixa> caixas = repostiorioCaixa.SelecionarTodos();
