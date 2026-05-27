@@ -1,0 +1,56 @@
+@using ClubeDaLeituraWeb.WebApp.ModuloAmigos.Apresentacao
+@using ClubeDaLeituraWeb.WebApp.ModuloRevista.Infra
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Edição de Revistas";
+
+    List<ListarCaixasViewModel> caixas = ViewBag.Caixas;
+}
+
+@model EditarRevistaViewModel;
+
+<form class="card border-primary-subtle shadow-sm mx-auto p-4" style="max-width: 620px;" asp-action="Editar"
+      method="post">
+
+    <div class="mb-3">
+        <label asp-for="Titulo" class="form-label fw-semibold text-primary text-uppercase small">Titulo</label>
+        <input asp-for="Titulo" type="text" class="form-control" value="@Model.Titulo">
+        <span asp-validation-for="Titulo" class="text-danger small fw-semibold"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NumeroEdicao" class="form-label fw-semibold text-primary text-uppercase small">Número de Edição
+            Responsavel</label>
+            <input asp-for="NumeroEdicao" type="number" min="1" class="form-control" value="@Model.NumeroEdicao">
+            <span asp-validation-for="NumeroEdicao" class="text-danger small fw-semibold"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="AnoPublicacao" class="form-label fw-semibold text-primary text-uppercase small">Ano de
+                Publicação</label>
+                <input asp-for="AnoPublicacao" type="number" min="1" class="form-control" value="@Model.AnoPublicacao">
+                <span asp-validation-for="AnoPublicacao" class="text-danger small fw-semibold"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="IdCaixa" class="form-label fw-semibold text-primary text-uppercase small">Caixas</label>
+                <select asp-for="IdCaixa" class="form-control">
+                    <option value="" selected>Selecione Uma Caixa</option>
+                    @foreach (ListarCaixasViewModel caixa in caixas)
+                    {
+                        if (caixa.Id == Model.IdCaixa)
+                    {
+                    <option value="@caixa.Id" selected>@caixa.Etiqueta</option>
+
+                    }
+                        <option value="@caixa.Id">@caixa.Etiqueta</option>
+                    }
+                </select>
+                <span asp-validation-for="IdCaixa" class="text-danger small fw-semibold"></span>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2 mt-4">
+                <a class="btn btn-outline-primary rounded-pill px-4" asp-action="Listar">Voltar</a>
+                <button class="btn btn-primary rounded-pill px-4" type="submit">Confirmar</button>
+            </div>
+        </form>
