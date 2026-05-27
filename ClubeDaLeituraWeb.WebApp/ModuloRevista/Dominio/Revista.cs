@@ -10,6 +10,10 @@ public class Revista : EntidadeBase<Revista>
     public int AnoPublicacao { get; set; }
     public Caixa Caixa { get; set; }
 
+    public Revista()
+    {
+
+    }
     public Revista(string titulo, int numeroEdicao, int anoPublicacao, Caixa caixa)
     {
         Titulo = titulo;

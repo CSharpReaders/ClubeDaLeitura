@@ -1,3 +1,4 @@
+using ClubeDaLeituraWeb.WebApp.ModuloCaixa.Apresentacao;
 using ClubeDaLeituraWeb.WebApp.ModuloCaixa.Dominio;
 using ClubeDaLeituraWeb.WebApp.ModuloRevista.Dominio;
 using ClubeDaLeituraWeb.WebApp.ModuloRevista.Infra;
@@ -35,5 +36,52 @@ public class RevistaController : Controller
             listarVmS.Add(vm);
         }
         return View(listarVmS);
+    }
+    [HttpGet]
+    public ActionResult Cadastrar()
+    {
+        ViewBag.Caixas = CarregarCaixas();
+
+        return View();
+    }
+    [HttpPost]
+    public ActionResult Cadastrar(CadastrarRevistaViewModel vmCadastro)
+    {
+        // Aqui pegamos o IDCaixa da VM e fazemos um select no repositorio
+
+        Caixa? caixaSelecionada = repostiorioCaixa.SelecionarPorId(vmCadastro.IdCaixa);
+
+        if (caixaSelecionada != null)
+        {
+            Revista revistaCadastro = new(
+            vmCadastro.Titulo,
+            vmCadastro.NumeroEdicao,
+            vmCadastro.AnoPublicacao,
+            caixaSelecionada
+        );
+            repositorioRevista.Cadastrar(revistaCadastro);
+
+        }
+        return RedirectToAction(nameof(Listar));
+    }
+    private List<ListarCaixasViewModel> CarregarCaixas()
+    {
+        List<Caixa> caixas = repostiorioCaixa.SelecionarTodos();
+
+        List<ListarCaixasViewModel> listarVms = new List<ListarCaixasViewModel>();
+
+        foreach (Caixa c in caixas)
+        {
+            ListarCaixasViewModel viewModel = new ListarCaixasViewModel(
+                c.Id,
+                c.Etiqueta,
+                c.Cor,
+                c.DiasDeEmprestimo
+            );
+
+            listarVms.Add(viewModel);
+        }
+
+        return listarVms;
     }
 }

@@ -9,3 +9,9 @@ public record ListarRevistaViewModels(
     int AnoPublicacao,
     string NomeCaixa
 );
+public record CadastrarRevistaViewModel(
+    string Titulo,
+    int NumeroEdicao,
+    int AnoPublicacao,
+    string IdCaixa
+);
