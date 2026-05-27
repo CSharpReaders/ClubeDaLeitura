@@ -1,6 +1,6 @@
 namespace ClubeDaLeituraWeb.WebApp.ModuloEmprestimo.Dominio;
 
-public enum Status
+public enum StatusEmprestimo
 {
     Aberto,
     Concluido,

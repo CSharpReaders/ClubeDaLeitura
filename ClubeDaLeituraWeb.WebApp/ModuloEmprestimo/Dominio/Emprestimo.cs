@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using ClubeDaLeituraWeb.WebApp.Compartilhado.Dominio;
 using ClubeDaLeituraWeb.WebApp.ModuloAmigos.Dominio;
 using ClubeDaLeituraWeb.WebApp.ModuloRevista.Dominio;
@@ -9,7 +8,7 @@ public class Emprestimo : EntidadeBase<Emprestimo>
 {
     public Amigo Amigo { get; set; }
     public Revista Revista { get; set; }
-    public Status Status { get; set; } = Status.Aberto;
+    public StatusEmprestimo Status { get; set; } = StatusEmprestimo.Aberto;
     public DateTime DataEmprestimo { get; set; } = DateTime.Now;
     public DateTime DataDevolucao
     {

@@ -1,6 +1,6 @@
 namespace ClubeDaLeituraWeb.WebApp.ModuloRevista.Dominio;
 
-public enum Status
+public enum StatusRevista
 {
     Disponivel,
     Emprestada,

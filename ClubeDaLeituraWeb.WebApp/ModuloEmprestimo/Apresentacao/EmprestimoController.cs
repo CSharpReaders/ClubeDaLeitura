@@ -58,14 +58,22 @@ public class EmprestimoController : Controller
             Emprestimo e = new(amigo, revista);
 
             //muda o status da revista para Emprestado
-            revista.Emprestar();
+            if (revista.Status == StatusRevista.Disponivel && amigo.Emprestimo == null)
+            {
+                //muda o status da revista para Emprestada
+                revista.Emprestar();
 
-            //adiciona o emprestimo ao amigo
-            amigo.AddEmprestimo(e);
+                //adiciona o emprestimo ao amigo
+                amigo.AddEmprestimo(e);
 
-            repositorioEmprestimo.Cadastrar(e);
+                repositorioEmprestimo.Cadastrar(e);
+
+                return RedirectToAction(nameof(Listar));
+
+            }
+            //aqui tem que fazer o else para caso as condicoes do IF forem falsas
         }
-        return RedirectToAction(nameof(Listar));
+        return RedirectToAction(nameof(Cadastrar));
     }
     private List<ListarRevistaNomeViewModels> CarregarRevista()
     {
