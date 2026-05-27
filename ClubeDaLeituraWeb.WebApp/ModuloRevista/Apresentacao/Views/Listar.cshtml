@@ -1,10 +1,11 @@
 @using ClubeDaLeituraWeb.WebApp.ModuloAmigos.Apresentacao
+@using ClubeDaLeituraWeb.WebApp.ModuloRevista.Infra
 @{
     Layout = "_Layout";
     ViewBag.Titulo = "Listagem de Revistas";
 }
 
-@model List<ListarAmigoViewModel>;
+@model List<ListarRevistaViewModels>;
 
 
 <a class="btn btn-outline-primary rounded-pill px-4 mb-3" asp-action="Cadastrar">Cadastrar Novo</a>
@@ -31,13 +32,14 @@ else
             </thead>
 
             <tbody>
-                @foreach (ListarAmigoViewModel c in Model)
+                @foreach (ListarRevistaViewModels c in Model)
                 {
                     <tr>
                         <td>@c.Id</td>
-                        <td>@c.Nome</td>
-                        <td>@c.NomeResponsavel</td>
-                        <td>@c.Telefone</td>
+                        <td>@c.Titulo</td>
+                        <td>@c.NumeroEdicao</td>
+                        <td>@c.AnoPublicacao</td>
+                        <td>@c.NomeCaixa</td>
                         <td>
                             <div class="d-flex gap-2">
                                 <a class="btn btn-outline-primary btn-sm rounded-pill px-3" asp-action="Editar"

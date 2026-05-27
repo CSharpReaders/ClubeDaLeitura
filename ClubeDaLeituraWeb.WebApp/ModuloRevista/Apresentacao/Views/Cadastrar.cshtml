@@ -1,4 +1,4 @@
-@using ClubeDaLeituraWeb.WebApp.ModuloAmigos.Apresentacao
+@* @using ClubeDaLeituraWeb.WebApp.ModuloAmigos.Apresentacao
 @{
     Layout = "_Layout";
     ViewBag.Titulo = "Cadastro de Revistas";
@@ -23,7 +23,8 @@
         </div>
 
         <div class="mb-3">
-            <label asp-for="AnoPublicacao" class="form-label fw-semibold text-primary text-uppercase small">Ano de Publicação</label>
+            <label asp-for="AnoPublicacao" class="form-label fw-semibold text-primary text-uppercase small">Ano de
+Publicação</label>
             <input asp-for="AnoPublicacao" type="number" min="1" class="form-control">
             <span asp-validation-for="AnoPublicacao" class="text-danger small fw-semibold"></span>
         </div>
@@ -32,4 +33,4 @@
             <a class="btn btn-outline-primary rounded-pill px-4" asp-action="Listar">Voltar</a>
             <button class="btn btn-primary rounded-pill px-4" type="submit">Confirmar</button>
         </div>
-    </form>
+    </form> *@
