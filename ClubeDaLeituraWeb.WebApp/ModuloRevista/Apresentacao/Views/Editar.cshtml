@@ -42,7 +42,10 @@
                         {
                             <option value="@caixa.Id" selected>@caixa.Etiqueta</option>
                         }
-                        <option value="@caixa.Id">@caixa.Etiqueta</option>
+                        else
+                        {
+                            <option value="@caixa.Id">@caixa.Etiqueta</option>
+                        }
                     }
                 </select>
                 <span asp-validation-for="IdCaixa" class="text-danger small fw-semibold"></span>

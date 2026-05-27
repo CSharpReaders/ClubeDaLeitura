@@ -84,6 +84,24 @@ public class RevistaController : Controller
 
         return View(vmEdidar);
     }
+    [HttpPost]
+    public ActionResult Editar(EditarRevistaViewModel vmEditar)
+    {
+        Caixa? caixa = repostiorioCaixa.SelecionarPorId(vmEditar.IdCaixa);
+
+        if (caixa != null)
+        {
+            Revista revistaAtualizada = new(
+                vmEditar.Titulo,
+                vmEditar.NumeroEdicao,
+                vmEditar.AnoPublicacao,
+                caixa
+            );
+            repositorioRevista.Editar(vmEditar.Id, revistaAtualizada);
+        }
+
+        return RedirectToAction(nameof(Listar));
+    }
     private List<ListarCaixasViewModel> CarregarCaixas()
     {
         List<Caixa> caixas = repostiorioCaixa.SelecionarTodos();
