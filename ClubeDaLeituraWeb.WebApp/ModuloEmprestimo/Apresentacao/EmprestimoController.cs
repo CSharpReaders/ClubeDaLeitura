@@ -24,8 +24,15 @@ public class EmprestimoController : Controller
     {
         ViewBag.StatusSelecionado = status;
 
-        List<Emprestimo> emprestimos = repositorioEmprestimo.SelecionarTodos();
+        List<Emprestimo> emprestimos;
 
+
+        if (status == "em-aberto")
+            emprestimos = repositorioEmprestimo.SelecionarEmAberto();
+        else if (status == "concluidos")
+            emprestimos = repositorioEmprestimo.SelecionarConcluidos();
+        else
+            emprestimos = repositorioEmprestimo.SelecionarTodos();
         List<ListarEmprestimoViewModel> vmListar = new();
 
         foreach (Emprestimo e in emprestimos)

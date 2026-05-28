@@ -5,4 +5,6 @@ namespace ClubeDaLeituraWeb.WebApp.ModuloRevista.Dominio;
 
 public interface IRepositorioEmprestimo : IRepositorio<Emprestimo>
 {
+    List<Emprestimo> SelecionarConcluidos();
+    List<Emprestimo> SelecionarEmAberto();
 }
