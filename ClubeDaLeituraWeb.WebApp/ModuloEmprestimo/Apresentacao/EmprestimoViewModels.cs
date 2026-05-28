@@ -12,3 +12,11 @@ public record CadastrarEmprestimoViewModel(
     string IdAmigo,
     string IdRevista
 );
+public record ConcluirEmprestimoViewModel(
+    string Id,
+    string NomeAmigo,
+    string NomeRevista,
+    string DataInicial,
+    string DataFinal,
+    string Status
+);

@@ -75,6 +75,24 @@ public class EmprestimoController : Controller
         }
         return RedirectToAction(nameof(Cadastrar));
     }
+    public ActionResult Concluir(string id)
+    {
+        Emprestimo? e = repositorioEmprestimo.SelecionarPorId(id);
+
+        if (e != null)
+        {
+            ConcluirEmprestimoViewModel vmConcluir = new(
+                e.Id,
+                e.Amigo.Nome,
+                e.Revista.Titulo,
+                e.DataEmprestimo.ToShortDateString(),
+                e.DataDevolucao.ToShortDateString(),
+                e.Status.ToString()
+            );
+            return View(vmConcluir);
+        }
+        return RedirectToAction(nameof(Listar));
+    }
     private List<ListarRevistaNomeViewModels> CarregarRevista()
     {
         List<Revista> revistas = repositorioRevista.SelecionarTodos();
