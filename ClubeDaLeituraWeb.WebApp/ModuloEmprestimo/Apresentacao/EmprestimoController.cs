@@ -107,9 +107,13 @@ public class EmprestimoController : Controller
     {
         Emprestimo? e = repositorioEmprestimo.SelecionarPorId(concluirVm.Id);
 
+        Amigo? a = repositorioAmigo.SelecionarPorId(e.Amigo.Id);
+
         e.Status = StatusEmprestimo.Concluido;
-        if (e != null)
+        if (e != null && a != null)
         {
+            a.Emprestimo = null;
+            repositorioAmigo.Editar(e.Amigo.Id, a);
             repositorioEmprestimo.Editar(concluirVm.Id, e);
         }
 

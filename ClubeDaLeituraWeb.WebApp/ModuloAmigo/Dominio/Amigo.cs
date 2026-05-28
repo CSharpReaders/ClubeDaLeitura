@@ -8,7 +8,7 @@ public class Amigo : EntidadeBase<Amigo>
     public string Nome { get; set; } = string.Empty;
     public string NomeResponsavel { get; set; } = string.Empty;
     public string Telefone { get; set; } = string.Empty;
-    public Emprestimo Emprestimo { get; set; }
+    public Emprestimo? Emprestimo { get; set; }
 
     public Amigo() { }
     public Amigo(string nome, string nomeResponsavel, string telefone)

@@ -75,11 +75,18 @@ namespace ClubeDaLeituraWeb.WebApp.ModuloAmigos.Apresentacao.Views
         {
             Amigo? amigoExcluir = repositorioAmigo.SelecionarPorId(excluirVm.Id);
 
-            if (amigoExcluir != null)
-                repositorioAmigo.Excluir(amigoExcluir);
+            if (amigoExcluir == null)
+                return View(excluirVm);
 
+            if (amigoExcluir.Emprestimo != null)
+            {
+                ModelState.AddModelError("Nome", "Amigos com emprestimos não podem ser excluidos");
+                return View(excluirVm);
+            }
 
+            repositorioAmigo.Excluir(amigoExcluir);
             return RedirectToAction(nameof(Listar));
+
         }
         [HttpGet]
         public ActionResult Editar(string id)
