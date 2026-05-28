@@ -31,7 +31,8 @@ public class RevistaController : Controller
                 r.Titulo,
                 r.NumeroEdicao,
                 r.AnoPublicacao,
-                r.Caixa.Etiqueta
+                r.Caixa.Etiqueta,
+                r.Status.ToString()
             );
             listarVmS.Add(vm);
         }

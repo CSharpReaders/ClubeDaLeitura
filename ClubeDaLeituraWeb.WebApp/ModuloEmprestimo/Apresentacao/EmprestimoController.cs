@@ -109,10 +109,15 @@ public class EmprestimoController : Controller
 
         Amigo? a = repositorioAmigo.SelecionarPorId(e.Amigo.Id);
 
+        Revista? r = repositorioRevista.SelecionarPorId(e.Revista.Id);
+
         e.Status = StatusEmprestimo.Concluido;
-        if (e != null && a != null)
+        if (e != null && a != null && r != null)
         {
             a.Emprestimo = null;
+            r.Status = StatusRevista.Disponivel;
+
+            repositorioRevista.Editar(e.Revista.Id, r);
             repositorioAmigo.Editar(e.Amigo.Id, a);
             repositorioEmprestimo.Editar(concluirVm.Id, e);
         }

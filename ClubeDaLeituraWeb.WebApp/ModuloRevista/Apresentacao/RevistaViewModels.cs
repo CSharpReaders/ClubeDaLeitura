@@ -6,7 +6,8 @@ public record ListarRevistaViewModels(
     string Titulo,
     int NumeroEdicao,
     int AnoPublicacao,
-    string NomeCaixa
+    string NomeCaixa,
+    string Status
 );
 public record ListarRevistaNomeViewModels(
     string Id,
