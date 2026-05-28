@@ -20,8 +20,10 @@ public class EmprestimoController : Controller
         this.repositorioRevista = repositorioRevista;
     }
 
-    public ActionResult Listar()
+    public ActionResult Listar(string? status)
     {
+        ViewBag.StatusSelecionado = status;
+
         List<Emprestimo> emprestimos = repositorioEmprestimo.SelecionarTodos();
 
         List<ListarEmprestimoViewModel> vmListar = new();
@@ -91,6 +93,19 @@ public class EmprestimoController : Controller
             );
             return View(vmConcluir);
         }
+        return RedirectToAction(nameof(Listar));
+    }
+    [HttpPost]
+    public ActionResult Concluir(ConcluirEmprestimoViewModel concluirVm)
+    {
+        Emprestimo? e = repositorioEmprestimo.SelecionarPorId(concluirVm.Id);
+
+        e.Status = StatusEmprestimo.Concluido;
+        if (e != null)
+        {
+            repositorioEmprestimo.Editar(concluirVm.Id, e);
+        }
+
         return RedirectToAction(nameof(Listar));
     }
     private List<ListarRevistaNomeViewModels> CarregarRevista()

@@ -23,7 +23,6 @@ public class Emprestimo : EntidadeBase<Emprestimo>
         Amigo = amigo;
         Revista = revista;
     }
-
     public override List<string> Validar()
     {
         throw new NotImplementedException();
@@ -31,6 +30,9 @@ public class Emprestimo : EntidadeBase<Emprestimo>
 
     public override void AtualizarDados(Emprestimo entidadeAtualizada)
     {
-        throw new NotImplementedException();
+        Amigo = entidadeAtualizada.Amigo;
+        Revista = entidadeAtualizada.Revista;
+        Status = entidadeAtualizada.Status;
+        DataEmprestimo = entidadeAtualizada.DataEmprestimo;
     }
 }

@@ -1,3 +1,4 @@
+@using ClubeDaLeituraWeb.WebApp.ModuloEmprestimo.Dominio
 @{
     Layout = "_Layout";
     ViewBag.Titulo = "Listagem de Emprestimos";
@@ -8,49 +9,71 @@
 
 <a class="btn btn-outline-primary rounded-pill px-4 mb-3" asp-action="Cadastrar">Abrir Emprestimo</a>
 
-@if (Model.Count == 0)
-{
-    <div class="alert alert-primary border-start border-primary border-2 rounded-3" role="alert">
-        Nenhum Emprestimo Cadastrado.
-    </div>
-}
-else
-{
-    <div class="table-responsive">
-        <table class="table table-hover table-bordered align-middle bg-white">
-            <thead class="table-primary">
-                <tr>
-                    <th>ID</th>
-                    <th>Amigo</th>
-                    <th>Revista</th>
-                    <th>Data Inicial</th>
-                    <th>Data Final</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
+<div>
+    <a asp-action="Listar"
+       class=" btn btn-outline-primary rounded-pill px-4 mb-3 fw-bold @(string.IsNullOrEmpty(ViewBag.StatusSelecionado) ? "text-dark bg-primary" : "") ">Todos</a>
 
-            <tbody>
-                @foreach (ListarEmprestimoViewModel c in Model)
-                {
-                    <tr>
-                        <td>@c.Id</td>
-                        <td>@c.NomeAmigo</td>
-                        <td>@c.NomeRevista</td>
-                        <td>@c.DataInicial</td>
-                        <td>@c.DataFinal</td>
-                        <td>@c.Status</td>
-                        <td>
-                            <div class="d-flex gap-2">
-                                <a class="btn btn-outline-primary btn-sm rounded-pill px-3" asp-action="Concluir"
-                                   asp-route-id="@c.Id">Concluir</a>
-                                <a class="btn btn-outline-primary btn-sm rounded-pill px-3" asp-action="Excluir"
-                                   asp-route-id="@c.Id">Excluir</a>
-                            </div>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+    <a asp-action="Listar" asp-route-status="em-aberto"
+       class="btn btn-outline-primary rounded-pill px-4 mb-3 fw-bold @(ViewBag.StatusSelecionado == "em-aberto" ? "text-dark bg-primary" : "")">Em
+        Aberto</a>
+
+        <a asp-action="Listar" asp-route-status="concluidos"
+           class="btn btn-outline-primary rounded-pill px-4 mb-3 fw-bold @(ViewBag.StatusSelecionado == "concluidos" ? "text-dark bg-primary" : "")">Concluidos</a>
     </div>
-}
+
+    @if (Model.Count == 0)
+    {
+        <div class="alert alert-primary border-start border-primary border-2 rounded-3" role="alert">
+            Nenhum Emprestimo Cadastrado.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered align-middle bg-white">
+                <thead class="table-primary">
+                    <tr>
+                        <th>ID</th>
+                        <th>Amigo</th>
+                        <th>Revista</th>
+                        <th>Data Inicial</th>
+                        <th>Data Final</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (ListarEmprestimoViewModel c in Model)
+                    {
+                        <tr>
+                            <td>@c.Id</td>
+                            <td>@c.NomeAmigo</td>
+                            <td>@c.NomeRevista</td>
+                            <td>@c.DataInicial</td>
+                            <td>@c.DataFinal</td>
+                            <td
+                                class="fw-bold @(c.Status == "Aberto" ? "" : c.Status == "Concluido" ? "text-success" : "text-danger")">
+                                @c.Status
+                            </td>
+                            <td>
+                                @if (c.Status != "Concluido")
+                                {
+                                    <div class="d-flex gap-2">
+                                        <a class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-bold " asp-action="Concluir"
+                                           asp-route-id="@c.Id">Concluir</a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="d-flex gap-2">
+                                        <span class="text-success fw-bold ">Finalizado</span>
+                                    </div>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
