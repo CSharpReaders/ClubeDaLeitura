@@ -1,4 +1,6 @@
 
+using System.ComponentModel.DataAnnotations;
+
 namespace ClubeDaLeituraWeb.WebApp.ModuloRevista.Infra;
 
 public record ListarRevistaViewModels(
@@ -14,9 +16,13 @@ public record ListarRevistaNomeViewModels(
     string Titulo
 );
 public record CadastrarRevistaViewModel(
+    [Required]
     string Titulo,
+    [Required]
     int NumeroEdicao,
+    [Required]
     int AnoPublicacao,
+    [Required]
     string IdCaixa
 );
 public record EditarRevistaViewModel(
